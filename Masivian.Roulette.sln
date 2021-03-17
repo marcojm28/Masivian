@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masivian.Roulette.API", "Masivian.Roulette.API\Masivian.Roulette.API.csproj", "{31672F7B-52BC-4B9E-B53D-04F9D17C3FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masivian.Roulette.Application", "Masivian.Roulette.Application\Masivian.Roulette.Application.csproj", "{0E0117C2-F1FA-49EC-9E01-F4217915C76C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masivian.Roulette.DTO", "Masivian.Roulette.DTO\Masivian.Roulette.DTO.csproj", "{82D26462-F954-4E25-A8A9-4740C997FE2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masivian.Roulette.Interface", "Masivian.Roulette.Interface\Masivian.Roulette.Interface.csproj", "{4372683F-E3E3-479A-B4B6-1D8AC57E372A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masivian.Roulette.Infraestructure", "Masivian.Roulette.Infraestructure\Masivian.Roulette.Infraestructure.csproj", "{85FC783C-79D7-45B1-BE70-CD78D3DEADCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31672F7B-52BC-4B9E-B53D-04F9D17C3FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31672F7B-52BC-4B9E-B53D-04F9D17C3FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31672F7B-52BC-4B9E-B53D-04F9D17C3FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31672F7B-52BC-4B9E-B53D-04F9D17C3FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0117C2-F1FA-49EC-9E01-F4217915C76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0117C2-F1FA-49EC-9E01-F4217915C76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0117C2-F1FA-49EC-9E01-F4217915C76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0117C2-F1FA-49EC-9E01-F4217915C76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D26462-F954-4E25-A8A9-4740C997FE2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D26462-F954-4E25-A8A9-4740C997FE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D26462-F954-4E25-A8A9-4740C997FE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D26462-F954-4E25-A8A9-4740C997FE2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4372683F-E3E3-479A-B4B6-1D8AC57E372A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4372683F-E3E3-479A-B4B6-1D8AC57E372A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4372683F-E3E3-479A-B4B6-1D8AC57E372A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4372683F-E3E3-479A-B4B6-1D8AC57E372A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FC783C-79D7-45B1-BE70-CD78D3DEADCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FC783C-79D7-45B1-BE70-CD78D3DEADCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FC783C-79D7-45B1-BE70-CD78D3DEADCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FC783C-79D7-45B1-BE70-CD78D3DEADCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12E42F2E-D298-4EEC-AA99-910E4CFACDAC}
+	EndGlobalSection
+EndGlobal
