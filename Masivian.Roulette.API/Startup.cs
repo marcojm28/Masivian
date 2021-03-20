@@ -1,3 +1,8 @@
+using EasyCaching.Core.Configurations;
+using Masivian.Roulette.Infraestructure.Repositories;
+using Masivian.Roulette.Interface.Repositories;
+using Masivian.Roulette.Interface.Services;
+using Masivian.Roulette.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,10 +27,22 @@ namespace Masivian.Roulette.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddEasyCaching(options =>
+            {
+                options.UseRedis(redisConfig =>
+                {
+                    redisConfig.DBConfig.Endpoints.Add(new ServerEndPoint("localhost", 6379));
+                    redisConfig.DBConfig.AllowAdmin = true;
+                },
+                    "redis01");
+            });
+
+            services.AddScoped<IRouletteRepository, RouletteRepository>();
+            services.AddScoped<IRouletteService, RouletteService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

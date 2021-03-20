@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EasyCaching.InMemory" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Masivian.Roulette.Domain\Masivian.Roulette.Domain.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.DTO\Masivian.Roulette.DTO.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.Interface\Masivian.Roulette.Interface.csproj" />
+  </ItemGroup>
+
 </Project>

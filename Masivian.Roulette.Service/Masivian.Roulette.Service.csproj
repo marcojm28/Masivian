@@ -7,6 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Masivian.Roulette.Domain\Masivian.Roulette.Domain.csproj" />
     <ProjectReference Include="..\Masivian.Roulette.DTO\Masivian.Roulette.DTO.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.Infraestructure\Masivian.Roulette.Infraestructure.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.Interface\Masivian.Roulette.Interface.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,5 +4,18 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EasyCaching.InMemory" Version="1.2.0" />
+    <PackageReference Include="EasyCaching.Redis" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Masivian.Roulette.Domain\Masivian.Roulette.Domain.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.DTO\Masivian.Roulette.DTO.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.Infraestructure\Masivian.Roulette.Infraestructure.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.Interface\Masivian.Roulette.Interface.csproj" />
+    <ProjectReference Include="..\Masivian.Roulette.Service\Masivian.Roulette.Service.csproj" />
+  </ItemGroup>
+
 
 </Project>
