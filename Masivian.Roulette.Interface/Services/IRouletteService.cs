@@ -8,5 +8,6 @@ namespace Masivian.Roulette.Interface.Services
     public interface IRouletteService
     {
         CreateRouletteResponseDTO CreateRoulette();
+        List<GetAllRouletteResponseDTO> GetAllRoulette();
     }
 }

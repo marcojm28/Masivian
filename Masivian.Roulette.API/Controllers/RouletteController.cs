@@ -28,15 +28,16 @@ namespace Masivian.Roulette.API.Controllers
         }
 
         [HttpPut("open/{id}")]
-        public IActionResult OpenRoulette()
+        public IActionResult OpenRoulette(string id)
         {
             return Ok();
         }
 
         [HttpPost("bet/{id}")]
-        public IActionResult PlaceBet()
+        public IActionResult PlaceBet(string id)
         {
-            return Ok();
+            return Ok(
+                );
         }
 
         [HttpPut("{id}/close")]
@@ -46,9 +47,9 @@ namespace Masivian.Roulette.API.Controllers
         }
 
         [HttpGet("get")]
-        public IActionResult GetAllRoulettes(int id)
+        public IActionResult GetAllRoulette()
         {
-            return Ok();
+            return Ok(_rouletteService.GetAllRoulette());
         }
 
 

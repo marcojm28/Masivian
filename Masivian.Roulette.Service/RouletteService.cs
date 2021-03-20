@@ -17,18 +17,18 @@ namespace Masivian.Roulette.Service
         }
         public CreateRouletteResponseDTO CreateRoulette()
         {
-            CreateRouletteResponseDTO createRouletteResponseDTO = new CreateRouletteResponseDTO()
-            {
-                Id = Guid.NewGuid().ToString()
-            };
             RouletteEntity rouletteEntity = new RouletteEntity()
             {
-                Id = createRouletteResponseDTO.Id,
+                Id = Guid.NewGuid().ToString(),
                 IsOpen = false
             };
             _rouletteRepository.CreateRoulette(rouletteEntity);
 
-            return createRouletteResponseDTO;
+            return new CreateRouletteResponseDTO { Id = rouletteEntity.Id};
+        }
+        public List<GetAllRouletteResponseDTO> GetAllRoulette()
+        {
+            return _rouletteRepository.GetAllRoulette();
         }
     }
 }

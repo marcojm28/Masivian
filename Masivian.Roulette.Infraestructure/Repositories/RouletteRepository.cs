@@ -12,7 +12,7 @@ namespace Masivian.Roulette.Infraestructure.Repositories
     {
         private IEasyCachingProvider _cachingProvider;
         private IEasyCachingProviderFactory _cachingProviderFactory;
-        private const string KEYREDIS = "redis01";
+        private const string KEYREDIS = "roulette";
 
         public RouletteRepository(IEasyCachingProviderFactory cachingProviderFactory)
         {
@@ -23,11 +23,25 @@ namespace Masivian.Roulette.Infraestructure.Repositories
         public CreateRouletteResponseDTO CreateRoulette(RouletteEntity rouletteEntity)
         {
             _cachingProvider.Set(KEYREDIS + rouletteEntity.Id, rouletteEntity, TimeSpan.FromDays(365));
-            CreateRouletteResponseDTO createRouletteResponseDTO = new CreateRouletteResponseDTO() {
-                Id = rouletteEntity.Id
-            };
 
-            return createRouletteResponseDTO;
+            return new CreateRouletteResponseDTO { Id = rouletteEntity.Id};
+        }
+
+        public List<GetAllRouletteResponseDTO> GetAllRoulette()
+        {
+            var getAllRouletteResponseDTOs = new List<GetAllRouletteResponseDTO>();
+            var roulettes =_cachingProvider.GetByPrefix<RouletteEntity>(KEYREDIS);
+            foreach (var item in roulettes) 
+            {
+                if (item.Value.HasValue) {
+                    getAllRouletteResponseDTOs.Add(new GetAllRouletteResponseDTO { 
+                        Id = item.Value.Value.Id,
+                        IsOpen = item.Value.Value.IsOpen
+                    });
+                }
+            }
+
+            return getAllRouletteResponseDTOs;
         }
     }
 }

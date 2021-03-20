@@ -9,5 +9,6 @@ namespace Masivian.Roulette.Interface.Repositories
     public interface IRouletteRepository
     {
         CreateRouletteResponseDTO CreateRoulette(RouletteEntity rouletteEntity);
+        List<GetAllRouletteResponseDTO> GetAllRoulette();
     }
 }

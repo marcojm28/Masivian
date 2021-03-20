@@ -38,7 +38,7 @@ namespace Masivian.Roulette.API
                     redisConfig.DBConfig.Endpoints.Add(new ServerEndPoint("localhost", 6379));
                     redisConfig.DBConfig.AllowAdmin = true;
                 },
-                    "redis01");
+                    "roulette");
             });
 
             services.AddScoped<IRouletteRepository, RouletteRepository>();
