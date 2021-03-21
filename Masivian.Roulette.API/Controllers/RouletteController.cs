@@ -34,11 +34,11 @@ namespace Masivian.Roulette.API.Controllers
             return Ok(_rouletteService.OpenRoulette(new OpenRouletteRequestDTO { Id = id}));
         }
 
-        [HttpPost("bet/{id}")]
-        public IActionResult PlaceBet(string id)
+        [HttpPost("bet")]
+        public IActionResult PlaceBet([FromHeader(Name = "id-user")] string UserId, PlaceBetRequestDTO placeBetRequestDTO)
         {
-            return Ok(
-                );
+            placeBetRequestDTO.IdUser = UserId;
+            return Ok(_rouletteService.PlaceBet(placeBetRequestDTO));
         }
 
         [HttpPut("{id}/close")]
