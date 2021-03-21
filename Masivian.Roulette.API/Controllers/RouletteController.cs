@@ -1,4 +1,5 @@
 ﻿using EasyCaching.Core;
+using Masivian.Roulette.DTO.Roulette;
 using Masivian.Roulette.Interface.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +31,7 @@ namespace Masivian.Roulette.API.Controllers
         [HttpPut("open/{id}")]
         public IActionResult OpenRoulette(string id)
         {
-            return Ok();
+            return Ok(_rouletteService.OpenRoulette(new OpenRouletteRequestDTO { Id = id}));
         }
 
         [HttpPost("bet/{id}")]

@@ -9,5 +9,6 @@ namespace Masivian.Roulette.Interface.Services
     {
         CreateRouletteResponseDTO CreateRoulette();
         List<GetAllRouletteResponseDTO> GetAllRoulette();
+        OpenRouletteResponseDTO OpenRoulette(OpenRouletteRequestDTO openRouletteRequestDTO);
     }
 }

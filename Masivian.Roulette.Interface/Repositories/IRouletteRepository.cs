@@ -10,5 +10,7 @@ namespace Masivian.Roulette.Interface.Repositories
     {
         CreateRouletteResponseDTO CreateRoulette(RouletteEntity rouletteEntity);
         List<GetAllRouletteResponseDTO> GetAllRoulette();
+        void UpdateRoulette(RouletteEntity openRouletteRequestDTO);
+        RouletteEntity GetRouletteById(string id);
     }
 }

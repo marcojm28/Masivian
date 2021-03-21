@@ -43,5 +43,21 @@ namespace Masivian.Roulette.Infraestructure.Repositories
 
             return getAllRouletteResponseDTOs;
         }
+          
+        public void UpdateRoulette(RouletteEntity rouletteEntity)
+        {
+            _cachingProvider.Set(KEYREDIS + rouletteEntity.Id, rouletteEntity, TimeSpan.FromDays(365));
+        }
+
+        public RouletteEntity GetRouletteById(string id)
+        {
+            var roulette = _cachingProvider.Get<RouletteEntity>(KEYREDIS + id);
+            if (!roulette.HasValue)
+            {
+                return null;
+            }
+
+            return roulette.Value;
+        }
     }
 }

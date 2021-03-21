@@ -1,4 +1,5 @@
 using EasyCaching.Core.Configurations;
+using Masivian.Roulette.API.Filters;
 using Masivian.Roulette.Infraestructure.Repositories;
 using Masivian.Roulette.Interface.Repositories;
 using Masivian.Roulette.Interface.Services;
@@ -29,7 +30,9 @@ namespace Masivian.Roulette.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options => {
+                options.Filters.Add<HandleCustomError>();
+            });
 
             services.AddEasyCaching(options =>
             {
