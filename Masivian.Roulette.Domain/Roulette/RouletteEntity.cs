@@ -35,7 +35,6 @@ namespace Masivian.Roulette.Domain.Roulette
     {
         public string IdUser { get; set; }
         public double Money { get; set; }
-        public double Profit { get; set; }
         public bool IsWinner { get; set; }
         public string BetType { get; set; }
         public string Color { get; set; }

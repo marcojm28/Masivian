@@ -4,6 +4,7 @@ using Masivian.Roulette.Interface.Repositories;
 using Masivian.Roulette.Interface.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Masivian.Roulette.Service
@@ -43,7 +44,6 @@ namespace Masivian.Roulette.Service
                 {
                     return new OpenRouletteResponseDTO { OperationState = Common.Enum.Message.denied };
                 }
-
             }
             roulette.IsOpen = true;
             _rouletteRepository.UpdateRoulette(roulette);
@@ -54,18 +54,9 @@ namespace Masivian.Roulette.Service
         {
             ValidateBet(placeBetRequestDTO);
             var roulette = _rouletteRepository.GetRouletteById(placeBetRequestDTO.IdRoulette);
-            if (roulette == null)
+            ValidateRouletteState(roulette);
+            roulette.Board[placeBetRequestDTO.BetType == Common.Enum.BetType.number ? placeBetRequestDTO.Position : Common.Enum.BetType.positionForBetColor].Bets.Add(new Bet
             {
-                throw new Exception(Common.Enum.Message.rouletteNotExist);
-            }
-            else
-            {
-                if (!roulette.IsOpen)
-                {
-                    throw new Exception(Common.Enum.Message.validateRouletteClosed);
-                }
-            }
-            roulette.Board[placeBetRequestDTO.BetType == Common.Enum.BetType.number ? placeBetRequestDTO.Position : Common.Enum.BetType.positionForBetColor].Bets.Add(new Bet {
                 IdUser = placeBetRequestDTO.IdUser,
                 BetType = placeBetRequestDTO.BetType,
                 Color = placeBetRequestDTO.Color,
@@ -74,6 +65,58 @@ namespace Masivian.Roulette.Service
             _rouletteRepository.UpdateRoulette(roulette);
 
             return new PlaceBetResponseDTO { OperationState = Common.Enum.Message.success };
+        }
+        public CloseRouletteResponseDTO CloseRoulette(CloseRouletteRequestDTO closeRouletteRequestDTO)
+        {
+            CloseRouletteResponseDTO closeRouletteResponseDTO = new CloseRouletteResponseDTO();
+            var roulette = _rouletteRepository.GetRouletteById(closeRouletteRequestDTO.Id);
+            ValidateRouletteState(roulette);
+            int winnerNumber = GetWinnerNumber();
+            string winnerColor = string.Empty;
+            var listWinnersPosition = roulette.Board[winnerNumber].Bets;
+            var listWinnersColor = roulette.Board[Common.Enum.BetType.positionForBetColor].Bets;
+            if ((winnerNumber % 2) == 0)
+            {
+                closeRouletteResponseDTO.ColorWinner = Common.Enum.Color.redDescription;
+                winnerColor = Common.Enum.Color.red;
+            }
+            else
+            {
+                closeRouletteResponseDTO.ColorWinner = Common.Enum.Color.blackDescription;
+                winnerColor = Common.Enum.Color.black;
+            }
+
+            for (int i = 0; i < listWinnersPosition.Count; i++)
+            {
+                closeRouletteResponseDTO.Winners.Add(new Winners
+                {
+                    IdUser = listWinnersPosition[i].IdUser,
+                    Bet = listWinnersPosition[i].Money,
+                    TotalProfit = listWinnersPosition[i].Money * 5
+                });
+                roulette.Board[winnerNumber].Bets[i].Money = listWinnersPosition[i].Money * 5;
+                roulette.Board[winnerNumber].Bets[i].IsWinner = true;
+            }
+            for (int i = 0; i < listWinnersColor.Count; i++)
+            {
+                if (listWinnersColor[i].Color == winnerColor)
+                {
+                    closeRouletteResponseDTO.Winners.Add(new Winners
+                    {
+                        IdUser = listWinnersColor[i].IdUser,
+                        Bet = listWinnersColor[i].Money,
+                        TotalProfit = listWinnersColor[i].Money * 1.8
+                    });
+                    roulette.Board[Common.Enum.BetType.positionForBetColor].Bets[i].Money = listWinnersColor[i].Money * 1.8;
+                    roulette.Board[Common.Enum.BetType.positionForBetColor].Bets[i].IsWinner = true;
+                }
+            }
+
+            roulette.IsOpen = false;
+            _rouletteRepository.UpdateRoulette(roulette);
+            closeRouletteResponseDTO.NumberWinner = winnerNumber;
+
+            return closeRouletteResponseDTO;
         }
 
         #region private methods
@@ -86,7 +129,7 @@ namespace Masivian.Roulette.Service
             {
                 ValidateBetColor(placeBetRequestDTO.Color);
             }
-            else 
+            else
             {
                 if (placeBetRequestDTO.BetType == Common.Enum.BetType.number)
                 {
@@ -136,12 +179,32 @@ namespace Masivian.Roulette.Service
                 throw new Exception(Common.Enum.Message.betOutRange);
             }
         }
-        private void ValidateIdUser(string idUser) 
+        private void ValidateIdUser(string idUser)
         {
             if (string.IsNullOrEmpty(idUser))
             {
                 throw new Exception(Common.Enum.Message.validateBetIdUser);
             }
+        }
+        private void ValidateRouletteState(RouletteEntity rouletteEntity)
+        {
+            if (rouletteEntity == null)
+            {
+                throw new Exception(Common.Enum.Message.rouletteNotExist);
+            }
+            else
+            {
+                if (!rouletteEntity.IsOpen)
+                {
+                    throw new Exception(Common.Enum.Message.validateRouletteClosed);
+                }
+            }
+        }
+        private int GetWinnerNumber()
+        {
+            Random random = new Random();
+
+            return random.Next(0, 36);
         }
         #endregion
     }

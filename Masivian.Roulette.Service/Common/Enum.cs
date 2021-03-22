@@ -28,6 +28,8 @@ namespace Masivian.Roulette.Service.Common
         {
             public const string black = "B";
             public const string red = "R";
+            public const string blackDescription = "Black";
+            public const string redDescription = "Red";
         }
     }
 }

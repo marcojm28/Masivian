@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Masivian.Roulette.API.Controllers
 {
     [Route("api/[controller]")]
@@ -41,10 +39,10 @@ namespace Masivian.Roulette.API.Controllers
             return Ok(_rouletteService.PlaceBet(placeBetRequestDTO));
         }
 
-        [HttpPut("{id}/close")]
+        [HttpPut("close/{id}")]
         public IActionResult CloseBet([FromRoute(Name = "id")] string id)
         {
-            return Ok();
+            return Ok(_rouletteService.CloseRoulette(new CloseRouletteRequestDTO { Id = id}));
         }
 
         [HttpGet("get")]
